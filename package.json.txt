@@ -1,0 +1,10 @@
+{
+  "name": "telegram-proxy",
+  "version": "1.0.0",
+  "description": "Telegram proxy for Webflow",
+  "main": "api/send-telegram.js",
+  "dependencies": {},
+  "scripts": {
+    "dev": "vercel dev"
+  }
+}
