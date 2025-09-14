@@ -1,0 +1,26 @@
+// api/keep-warm.js
+export default async function handler(req, res) {
+  // Перевіряємо час (київський час)
+  const now = new Date();
+  const ukraineTime = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Kiev"}));
+  const currentHour = ukraineTime.getHours();
+  
+  // Працюємо тільки з 9:00 до 22:00 за Києвом
+  if (currentHour >= 9 && currentHour < 22) {
+    console.log(`Keep-warm ping at ${ukraineTime.toLocaleString()} (Kiev time)`);
+    
+    // Простий "пінг" для підтримки функції активною
+    return res.status(200).json({ 
+      status: 'active',
+      time: ukraineTime.toLocaleString(),
+      message: 'Telegram API is warm and ready'
+    });
+  } else {
+    console.log(`Outside working hours: ${ukraineTime.toLocaleString()}`);
+    return res.status(200).json({ 
+      status: 'sleeping',
+      time: ukraineTime.toLocaleString(),
+      message: 'Outside working hours (9:00-22:00 Kiev time)'
+    });
+  }
+}
