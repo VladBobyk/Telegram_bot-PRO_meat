@@ -44,8 +44,12 @@ export default async function handler(req, res) {
       messageLength: message.length
     });
 
+    console.log('Original message:', message);
+    
     // Конвертуємо текст в зірочках в жирний HTML
     const htmlMessage = message.replace(/\*(.*?)\*/g, '<b>$1</b>');
+    
+    console.log('Converted message:', htmlMessage);
 
     // Відправка повідомлення в Telegram
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
