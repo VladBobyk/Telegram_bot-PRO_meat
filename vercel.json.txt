@@ -2,6 +2,15 @@
   "functions": {
     "api/send-telegram.js": {
       "maxDuration": 10
+    },
+    "api/keep-warm.js": {
+      "maxDuration": 5
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/keep-warm",
+      "schedule": "*/10 6-19 * * *"
+    }
+  ]
 }
