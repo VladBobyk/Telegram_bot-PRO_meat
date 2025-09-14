@@ -44,11 +44,8 @@ export default async function handler(req, res) {
       messageLength: message.length
     });
 
-    // Конвертуємо Markdown в HTML для кращого відображення
-    const htmlMessage = message
-      .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')  // **bold** -> <b>bold</b>
-      .replace(/\*(.*?)\*/g, '<i>$1</i>')      // *italic* -> <i>italic</i>
-      .replace(/\n/g, '\n');                    // зберігаємо переноси рядків
+    // Повідомлення вже приходить в HTML форматі з жирним текстом
+    const htmlMessage = message;
 
     // Відправка повідомлення в Telegram
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
